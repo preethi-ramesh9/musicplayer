@@ -78,7 +78,7 @@ class _LoginpageState extends State<Loginpage> {
                 height: 30,),
 
                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       
                       IconButton(onPressed: (){} 

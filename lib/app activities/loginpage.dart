@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:musicplayer/services/auth_service.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 class Loginpage  extends StatefulWidget {
-  Loginpage ({super.key});
+  const Loginpage ({super.key});
 
   @override
   State<Loginpage> createState() => _LoginpageState();
 }
 
 class _LoginpageState extends State<Loginpage> {
+  // ignore: non_constant_identifier_names
+  TextEditingController Useremail =  TextEditingController();
+  // ignore: non_constant_identifier_names
+  TextEditingController Userpassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +44,9 @@ class _LoginpageState extends State<Loginpage> {
                 const SizedBox( width: 30,
                 height: 30,),
         
-                const TextField(decoration: InputDecoration(
+                TextField(
+                  controller: Useremail,
+                  decoration: const InputDecoration(
                   hintText: 'Email',
                   hintStyle: TextStyle(color: Colors.grey,
                   fontSize: 16),
@@ -48,7 +56,9 @@ class _LoginpageState extends State<Loginpage> {
                 const SizedBox( width: 30,
                 height: 30,),
                 
-                const TextField(decoration: InputDecoration(
+                TextField(
+                  controller: Userpassword,
+                  decoration: const InputDecoration(
                   hintText: 'Password',
                   hintStyle: TextStyle(color: Colors.grey,
                   fontSize: 16),
@@ -58,7 +68,13 @@ class _LoginpageState extends State<Loginpage> {
                 const SizedBox( width: 60,
                 height: 60,),
 
-                ElevatedButton(onPressed: () { },
+                ElevatedButton(
+                  onPressed: () { 
+                    AuthService().signup(
+                    email: Useremail.text, 
+                    password: Userpassword.text,
+                    context: this.context);
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(240, 50),
                      backgroundColor: const Color.fromARGB(255, 216, 232, 231),
